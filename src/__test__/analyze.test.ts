@@ -156,10 +156,10 @@ describe("analyze", () => {
       `
       class A {
        x = 1;
-       // unused-members-ignore-next
+       // unused-class-members-ignore-next
        y = 1;
       }
-      // unused-members-ignore-next
+      // unused-class-members-ignore-next
       class B {
         x = 1;
         y = 1;
@@ -182,10 +182,10 @@ describe("analyze", () => {
       `
       class A {
        x = 1;
-       // unused-members-ignore-next
+       // unused-class-members-ignore-next
        y = 1;
       }
-      // unused-members-ignore-next
+      // unused-class-members-ignore-next
       class B {
         x = 1;
         y = 1;

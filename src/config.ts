@@ -39,7 +39,7 @@ const cliConfig = yargs(process.argv.slice(2))
   .help().argv;
 
 const fileConfig =
-  cosmiconfigSync("ts-no-unused-members").search()?.config ?? {};
+  cosmiconfigSync("ts-unused-class-members").search()?.config ?? {};
 
 const config: IConfig = {
   ...defaultConfig,

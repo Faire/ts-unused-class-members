@@ -1,6 +1,6 @@
 {
   "name": "@faire/ts-unused-class-members",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Find unused class variables and methods in a typescript project",
   "main": "dist/index.js",
   "repository": "git@github.com:Faire/ts-unused-class-members.git",
