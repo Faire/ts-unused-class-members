@@ -1,10 +1,10 @@
 import { IOffendingMembers } from "./analyze";
 import { groupBy } from "lodash";
-const readline = require('readline');
+const readline = require("readline");
 
 export const printProgress = (progress: string) => {
   readline.clearLine(process.stdout);
-  readline.cursorTo(process.stdout,0);
+  readline.cursorTo(process.stdout, 0);
   process.stdout.write(progress);
 };
 
@@ -20,7 +20,7 @@ export const printResults = (results: IOffendingMembers[]) => {
     Object.entries(groupedByClass).forEach(([className, results]) => {
       console.log(className);
 
-      results.forEach(({declaration, reason}) => {
+      results.forEach(({ declaration, reason }) => {
         console.log(`- ${declaration.getName()}: ${reason}`);
       });
     });

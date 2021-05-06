@@ -9,7 +9,7 @@ const main = async () => {
   if (NUM_SHARDS > 1) {
     console.log(`Shard ${CURRENT_SHARD}/${NUM_SHARDS}`);
   }
-  printProgress('Initializing...');
+  printProgress("Initializing...");
 
   const config = getConfig();
   const project = new t.Project({

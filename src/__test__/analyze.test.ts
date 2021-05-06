@@ -75,7 +75,7 @@ describe("analyze", () => {
         class: "A",
         member: "x",
         reason: "unused",
-      }
+      },
     ]);
   });
 

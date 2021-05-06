@@ -2,7 +2,7 @@ import * as t from "ts-morph";
 import { hashCode } from "./utils/hashCode";
 import { getConfig } from "./config";
 import { CURRENT_SHARD, IGNORE_COMMENT, NUM_SHARDS } from "./consts";
-import {printProgress} from "./print";
+import { printProgress } from "./print";
 
 type MemberDeclaration = t.MethodDeclaration | t.ClassInstancePropertyTypes;
 export interface IOffendingMembers {
@@ -235,6 +235,8 @@ export const analyze = (project: t.Project): IOffendingMembers[] => {
     }
   }
 
-  printProgress(`Files checked: ${files.length}, Offending members found: ${offendingMembers.length}\n`);
+  printProgress(
+    `Files checked: ${files.length}, Offending members found: ${offendingMembers.length}\n`
+  );
   return offendingMembers;
 };
