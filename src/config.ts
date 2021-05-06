@@ -31,7 +31,10 @@ const cliConfig = yargs(process.argv.slice(2))
     },
     fix: { type: "boolean", describe: "Auto fix offending members" },
     path: { type: "string", describe: "Path to the directory or file to scan" },
-    ignoreFileRegex: { type: 'string', describe: 'Regex for checking if a file should be ignored'}
+    ignoreFileRegex: {
+      type: "string",
+      describe: "Regex for checking if a file should be ignored",
+    },
   })
   .help().argv;
 
