@@ -3,7 +3,6 @@ import yargs from "yargs";
 
 interface ICliConfig {
   project: string;
-  skipPrivate?: boolean;
   fix?: boolean | undefined;
   path?: string;
   ignoreFileRegex?: string;
@@ -24,10 +23,6 @@ const cliConfig = yargs(process.argv.slice(2))
     project: {
       type: "string",
       describe: "Path to the project config file (tsconfig.json)",
-    },
-    skipPrivate: {
-      type: "boolean",
-      describe: "Skip class members that are already private",
     },
     fix: { type: "boolean", describe: "Auto fix offending members" },
     path: { type: "string", describe: "Path to the directory or file to scan" },
