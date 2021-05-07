@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import * as t from "ts-morph";
 import { getConfig } from "./config";
 import { analyze } from "./analyze";
