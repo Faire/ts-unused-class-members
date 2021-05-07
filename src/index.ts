@@ -4,13 +4,13 @@ import { getConfig } from "./config";
 import { analyze } from "./analyze";
 import { fix } from "./fix";
 import { CURRENT_SHARD, NUM_SHARDS } from "./consts";
-import { printProgress, printResults } from "./print";
+import { printResults } from "./print";
 
 const main = async () => {
   if (NUM_SHARDS > 1) {
     console.log(`Shard ${CURRENT_SHARD}/${NUM_SHARDS}`);
   }
-  printProgress("Initializing...");
+  console.log("Initializing...");
 
   const config = getConfig();
   const project = new t.Project({
@@ -21,11 +21,11 @@ const main = async () => {
   printResults(offendingMembers);
 
   if (config.fix) {
-    printProgress(`Fixing ${offendingMembers.length} members...`);
+    console.log(`Fixing ${offendingMembers.length} members...`);
     await fix(offendingMembers);
   }
 
-  console.log("Done\n");
+  console.log("Done");
   process.exit(!config.fix && offendingMembers.length ? 1 : 0);
 };
 
