@@ -92,8 +92,7 @@ const shouldIgnoreMember = (declaration: MemberDeclaration): boolean => {
 
   if (
     declaration.hasModifier(t.SyntaxKind.AbstractKeyword) ||
-    declaration.hasModifier(t.SyntaxKind.ProtectedKeyword) ||
-    (declaration.hasModifier(t.SyntaxKind.PrivateKeyword) && config.skipPrivate)
+    declaration.hasModifier(t.SyntaxKind.ProtectedKeyword)
   ) {
     return true;
   }

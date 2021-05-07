@@ -277,21 +277,4 @@ describe("analyze", () => {
     });
     assertResults(analyze(project), []);
   });
-
-  it("should skip members that are already private if config.skipPrivate is true", () => {
-    const project = new Project({ useInMemoryFileSystem: true });
-    project.createSourceFile(
-      "foo.ts",
-      `
-      class A {
-        private x = 1;
-      }
-    `
-    );
-
-    getConfigMock.mockReturnValue({
-      skipPrivate: true,
-    });
-    assertResults(analyze(project), []);
-  });
 });
