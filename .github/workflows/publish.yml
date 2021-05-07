@@ -17,6 +17,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn test:ci
       - run: yarn build
-      - run: yarn publish
+      - run: yarn semantic-release
         env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
