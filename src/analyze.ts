@@ -177,6 +177,8 @@ export const analyze = (project: t.Project): IOffendingMembers[] => {
     .getSourceFiles(pattern)
     .filter((file) => !shouldIgnoreFile(file));
 
+  console.log(`Checking ${files.length} files...`);
+
   const offendingMembers: IOffendingMembers[] = [];
 
   let fileCounter = 0;
@@ -234,9 +236,6 @@ export const analyze = (project: t.Project): IOffendingMembers[] => {
       }
     }
   }
-
-  printProgress(
-    `Files checked: ${files.length}, Offending members found: ${offendingMembers.length}\n`
-  );
+  printProgress(`Offending members found: ${offendingMembers.length}\n`);
   return offendingMembers;
 };

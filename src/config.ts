@@ -27,7 +27,7 @@ const cliConfig = yargs(process.argv.slice(2))
     },
     skipPrivate: {
       type: "boolean",
-      describe: "Skip class members that's already private",
+      describe: "Skip class members that are already private",
     },
     fix: { type: "boolean", describe: "Auto fix offending members" },
     path: { type: "string", describe: "Path to the directory or file to scan" },

@@ -3,9 +3,11 @@ import { groupBy } from "lodash";
 const readline = require("readline");
 
 export const printProgress = (progress: string) => {
-  readline.clearLine(process.stdout);
-  readline.cursorTo(process.stdout, 0);
-  process.stdout.write(progress);
+  if (process.stdout.isTTY) {
+    readline.clearLine(process.stdout);
+    readline.cursorTo(process.stdout, 0);
+    process.stdout.write(progress);
+  }
 };
 
 export const printResults = (results: IOffendingMembers[]) => {
@@ -24,6 +26,9 @@ export const printResults = (results: IOffendingMembers[]) => {
         console.log(`- ${declaration.getName()}: ${reason}`);
       });
     });
+
+    if (results.length) {
+      console.log();
+    }
   });
-  console.log();
 };
