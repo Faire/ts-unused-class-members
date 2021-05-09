@@ -22,13 +22,16 @@ const cliConfig = yargs(process.argv.slice(2))
   .options({
     project: {
       type: "string",
-      describe: "Path to the project config file (tsconfig.json)",
+      describe: "Path to the project's tsconfig.json",
     },
     fix: { type: "boolean", describe: "Auto fix offending members" },
-    path: { type: "string", describe: "Path to the directory or file to scan" },
+    path: {
+      type: "string",
+      describe: "Path to a single directory/file to scan",
+    },
     ignoreFileRegex: {
       type: "string",
-      describe: "Regex for checking if a file should be ignored",
+      describe: "Regex pattern for excluding files",
     },
   })
   .help().argv;
