@@ -11,19 +11,20 @@ export const printProgress = (progress: string) => {
 };
 
 export const printResults = (results: IOffendingMembers[]) => {
+  const logRed = (str: string) => console.log("\x1b[31m%s\x1b[0m", str);
   const groupedByFile = groupBy(results, (entry) => entry.file.getFilePath());
 
   Object.entries(groupedByFile).forEach(([filePath, results]) => {
     console.log();
-    console.log(filePath);
+    logRed(filePath);
 
     const groupedByClass = groupBy(results, (entry) => entry.class.getName());
 
     Object.entries(groupedByClass).forEach(([className, results]) => {
-      console.log(className);
+      logRed(className);
 
       results.forEach(({ declaration, reason }) => {
-        console.log(`- ${declaration.getName()}: ${reason}`);
+        logRed(`- ${declaration.getName()}: ${reason}`);
       });
     });
 
