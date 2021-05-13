@@ -3,6 +3,7 @@ import { hashCode } from "./utils/hashCode";
 import { getConfig } from "./config";
 import { CURRENT_SHARD, IGNORE_COMMENT, NUM_SHARDS } from "./consts";
 import { printProgress } from "./print";
+import { getRelativeFilePath } from "./utils/getRelativeFilePath";
 
 type MemberDeclaration = t.MethodDeclaration | t.ClassInstancePropertyTypes;
 export interface IOffendingMembers {
@@ -182,7 +183,9 @@ export const analyze = (project: t.Project): IOffendingMembers[] => {
 
   let fileCounter = 0;
   for (const file of files) {
-    printProgress(`${++fileCounter}/${files.length} ${file.getFilePath()}`);
+    printProgress(
+      `${++fileCounter}/${files.length} ${getRelativeFilePath(file)}`
+    );
 
     const classes = file.getClasses();
 

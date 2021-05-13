@@ -1,5 +1,6 @@
 import { IOffendingMembers } from "./analyze";
 import { groupBy } from "lodash";
+import { getRelativeFilePath } from "./utils/getRelativeFilePath";
 const readline = require("readline");
 
 export const printProgress = (progress: string) => {
@@ -12,7 +13,10 @@ export const printProgress = (progress: string) => {
 
 export const printResults = (results: IOffendingMembers[]) => {
   const logRed = (str: string) => console.log("\x1b[31m%s\x1b[0m", str);
-  const groupedByFile = groupBy(results, (entry) => entry.file.getFilePath());
+
+  const groupedByFile = groupBy(results, (entry) =>
+    getRelativeFilePath(entry.file)
+  );
 
   Object.entries(groupedByFile).forEach(([filePath, results]) => {
     console.log();
