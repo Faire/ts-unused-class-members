@@ -34,6 +34,7 @@ const cliConfig = yargs(process.argv.slice(2))
       describe: "Regex pattern for excluding files",
     },
   })
+  .hide("fix")
   .help().argv;
 
 const fileConfig =
