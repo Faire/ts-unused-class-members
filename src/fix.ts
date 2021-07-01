@@ -1,8 +1,10 @@
 import * as t from "ts-morph";
 import { IOffendingMembers } from "./analyze";
+import { SourceFile } from "ts-morph";
 
 export const fix = (membersToFix: IOffendingMembers[]): Promise<unknown> => {
-  const savePromises: Promise<void>[] = [];
+  const touchedFiles: Set<SourceFile> = new Set();
+
   membersToFix.forEach(({ file, declaration, reason }) => {
     if (reason === "unused") {
       declaration.remove();
@@ -11,8 +13,8 @@ export const fix = (membersToFix: IOffendingMembers[]): Promise<unknown> => {
       declaration.set({ scope: t.Scope.Private });
     }
 
-    savePromises.push(file.save());
+    touchedFiles.add(file);
   });
 
-  return Promise.all(savePromises);
+  return Promise.all(Array.from(touchedFiles).map((file) => file.save()));
 };
