@@ -1,61 +1,61 @@
 # ts-unused-class-members
 
-A CLI tool for finding unused class variables and methods in a typescript project.
+A CLI tool for finding unused class variables and methods in a TypeScript project.
 
-<img width="812" alt="Screen Shot 2021-05-09 at 10 28 58 PM" src="https://user-images.githubusercontent.com/10435612/117598513-cf3c1300-b0fc-11eb-80d5-1ec4cba1e178.png">
+![Screen Shot 2021-07-01 at 2 13 47 PM](https://user-images.githubusercontent.com/10435612/124171469-a1c57300-da76-11eb-9281-97aae3858bbb.png)
+
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#usage">Usage</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#configuration">Configuration</a>
+      <ul>
+        <li><a href="#configuration-file">Configuration File</a></li>
+        <li><a href="#cli-options">CLI Options</a></li>
+      </ul>
+    </li>
+    <li><a href="#ignoring-a-specifc-declaration">Ignoring a Specifc Declaration</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
 
 ## Getting Started
 
 ### Prerequisites
 
-`@faire/ts-unused-class-members` is hosted on [GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#installing-a-package). You can use the command below to configure npm to download `@faire` packages from GitHub Packages.
+`@faire/ts-unused-class-members` is hosted on :octocat:[GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#installing-a-package). To configure npm to download @faire packaes from Git Packages registry you'll need to
 
+1. Create a personal access token with the `read:packages` scope
+2. Add the personall access token to ~/.npmrc
+```
+echo "//npm.pkg.github.com/:_authToken=YOUR_TOKEN" >> ~/.npmrc
+```
+3. Configure npm to download @faire packages from Git Packages registry
 ```
 npm config set @faire:registry https://npm.pkg.github.com
 ```
 
-Alternatively, you could also create or edit an `~/.npmrc` or `PROJECT_ROOT/.npmrc` file to include this line:
 
-```
-@faire:registry=https://npm.pkg.github.com
-```
-
-### Installation & Usage
-
-#### Globally
-
-```
-npm i @faire/ts-unused-class-members -g
-ts-unused-class-members
-```
-
-#### Locally - npm
-
-```
-npm i @faire/ts-unused-class-members
-./node_modules/.bin/ts-unused-class-members
-```
-
-#### Locally - yarn
-
-```
-yarn add @faire/ts-unused-class-members
-yarn ts-unused-class-members
-```
-
-Or install + execute it with npx:
-
+### Usage
+In the same directory as your `tsconfig.json`, run
 ```
 npx @faire/ts-unused-class-members
 ```
 
 ## Configuration
 
-`ts-unused-class-members` supports both CLI and file configuration.
+`ts-unused-class-members` supports both file and CLI configuration.
 
 ### Configuration File
 
-`ts-unused-class-members` consumes configuration using [cosmiconfig](https://github.com/davidtheclark/cosmiconfig#cosmiconfig), which supports various config formats including:
+`ts-unused-class-members` consumes configuration using [cosmiconfig](https://github.com/davidtheclark/cosmiconfig#cosmiconfig), which supports various config formats.
 
 - a `ts-unused-class-members` property in package.json
 - a `ts-unused-class-members.config.js` or `ts-unused-class-members.config.cjs` CommonJS module exporting an object
@@ -81,12 +81,12 @@ Example configuration for a React + Mobx project:
 >     "UNSAFE_componentWillMount",
 >   ],
 >   /**
->    * Ignore members decorated by @disposeOnUnmount
+>    * Ignore members decorated by Mobx's @disposeOnUnmount
 >    */
 >   ignoreDecoratorNames: ["disposeOnUnmount"],
 >   /**
->    * Ignore members initialized with `reaction`
->    * e.g. public myReaction = reaction(...)
+>    * Ignore members initialized with Mobx's reaction()
+>    * e.g. public myReaction = reaction(...);
 >    */
 >   ignoreInitializerNames: ["reaction"],
 > };
@@ -94,7 +94,7 @@ Example configuration for a React + Mobx project:
 
 ### CLI Options
 
-Some options can be set via CLI arguments. Run `ts-unused-class-members` with `--help` to see all avaiable CLI options.
+Run `ts-unused-class-members` with `--help` to see all avaiable CLI options.
 
 ```
 Options:
@@ -103,13 +103,10 @@ Options:
   --ignoreFileRegex  Regex pattern for excluding files                  [string]
 ```
 
-These options are all optional and can be set in a configuration file.
+These options are optional and you can also set them using a config file.
 
-## Ignoring
-
-`ts-unused-class-members` can be configured to ignore certain class members using `ignoreMemberNames`, `ignoreDecoratorNames`, and `ignoreInitializerNames` (see example above). You can also tell it to ignore certain files using `ignoreFileRegex`.
-
-To ignore a specific class member or class, comment the declaration line with `// unused-class-members-ignore-next`.
+## Ignoring a Specifc Declaration
+You can also tell `ts-unused-class-members` to ignore a specifc class or class member by prefixing its declaration with `// unused-class-members-ignore-next`. 
 
 ```js
 // unused-class-members-ignore-next
@@ -126,5 +123,5 @@ class A {
 
 ## Acknowledgements
 
-- [ts-morph](https://github.com/dsherret/ts-morph): amazing library for navigating/manipulating Typescript AST
-- [ts-prune](https://github.com/nadeesha/ts-prune): powerful CLI tool for finding unused exports in a Typescript project
+- [ts-morph](https://github.com/dsherret/ts-morph)
+- [ts-prune](https://github.com/nadeesha/ts-prune)
