@@ -15,8 +15,8 @@ A CLI tool for finding unused class variables and methods in a TypeScript projec
         <li><a href="#cli-options">CLI Options</a></li>
       </ul>
     </li>
-    <li><a href="#configuration">Configuration File</a></li>
-    <li><a href="#ignoring-a-specifc-declaration">Ignoring a Specific Declaration</a></li>
+    <li><a href="#configuration-file">Configuration File</a></li>
+    <li><a href="#ignoring-a-specific-declaration">Ignoring a Specific Declaration</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
