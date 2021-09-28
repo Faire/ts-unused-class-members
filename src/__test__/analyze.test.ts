@@ -58,7 +58,7 @@ describe("analyze", () => {
     project.createSourceFile(
       "foo.ts",
       `
-      class A {
+      export class A {
        x = 1;
        y = 1;
       }
@@ -67,6 +67,7 @@ describe("analyze", () => {
     project.createSourceFile(
       "bar.ts",
       `
+      import { A } from "./foo";
       const { y } = new A();
     `
     );
