@@ -119,6 +119,12 @@ class A {
 }
 ```
 
+## Contributing
+
+Issues and PRs are welcome!
+
+This project uses [semantic-release](https://github.com/semantic-release/semantic-release) to automate version management and package publishing, so make sure to follow the [commit message conventions](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-format) when contributing.
+
 ## Acknowledgements
 
 - [ts-morph](https://github.com/dsherret/ts-morph)
