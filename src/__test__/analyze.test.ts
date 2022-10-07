@@ -7,9 +7,9 @@ jest.mock("../config.ts");
 
 describe("analyze", () => {
   interface IResult {
-    class: string;
-    member: string;
-    reason: string;
+    class: string | undefined;
+    member: string | undefined;
+    reason: string | undefined;
   }
   const assertResults = (results: IOffendingMembers[], expected: IResult[]) => {
     const received: IResult[] = results.map((entry) => ({
@@ -32,7 +32,7 @@ describe("analyze", () => {
       `
         class A {
           x = 1,
-          
+
           fn() {
             return this.x;
           }
@@ -139,7 +139,7 @@ describe("analyze", () => {
         y = 1;
       }
       console.log(new GrandParent().x, new Parent().y);
-      
+
       // should ignore x and y
       class Child extends Parent {
         x = 2;
@@ -276,6 +276,43 @@ describe("analyze", () => {
       ignoreDecoratorNames: ["y"],
       ignoreInitializerNames: ["getZ"],
     });
+    assertResults(analyze(project), []);
+  });
+
+  it("should not flag properties with the override keyword", () => {
+    const project = new Project({ useInMemoryFileSystem: true });
+    project.createSourceFile(
+      "Setting.ts",
+      `
+      export class Setting {
+        get value() {
+          return "1";
+        }
+      }
+    `
+    );
+
+    project.createSourceFile(
+      "OverrideSetting.ts",
+      `
+      import { Setting } from "./Setting";
+      export class OverrideSetting extends Setting {
+        override get value() {
+          return "1";
+        }
+      }
+    `
+    );
+
+    project.createSourceFile(
+      "use.ts",
+      `
+      import { OverrideSetting } from "./OverrideSetting";
+      const s = new OverrideSetting();
+      console.log(s.value);
+    `
+    );
+
     assertResults(analyze(project), []);
   });
 });
