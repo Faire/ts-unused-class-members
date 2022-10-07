@@ -288,6 +288,10 @@ describe("analyze", () => {
         get value() {
           return "1";
         }
+
+        async assignment() {
+          return Promise.resolve();
+        }
       }
     `
     );
@@ -300,6 +304,10 @@ describe("analyze", () => {
         override get value() {
           return "1";
         }
+
+        override async assignment() {
+          return Promise.resolve();
+        }
       }
     `
     );
@@ -310,6 +318,7 @@ describe("analyze", () => {
       import { OverrideSetting } from "./OverrideSetting";
       const s = new OverrideSetting();
       console.log(s.value);
+      console.log(s.assignment());
     `
     );
 
