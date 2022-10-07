@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+env:
+  VERDACCIO_TOKEN: ${{ secrets.FAIRE_CI_VERDACCIO_TOKEN }}
+
 jobs:
   tests:
     name: Tests
