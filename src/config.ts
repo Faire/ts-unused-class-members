@@ -6,6 +6,7 @@ interface ICliConfig {
   fix?: boolean | undefined;
   path?: string;
   ignoreFileRegex?: string;
+  ignoreCouldBePrivate?: boolean | undefined;
 }
 
 interface IConfig extends ICliConfig {
@@ -33,6 +34,10 @@ const cliConfig = yargs(process.argv.slice(2))
       type: "string",
       describe: "Regex pattern for excluding files",
     },
+    ignoreCouldBePrivate: {
+      type: "boolean",
+      describe: "Don't report members that are public but could be private",
+    }
   })
   .hide("fix")
   .help().argv;

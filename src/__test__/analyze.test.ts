@@ -53,6 +53,33 @@ describe("analyze", () => {
     ]);
   });
 
+  it("should ignore private if not wanted", () => {
+    const project = new Project({ useInMemoryFileSystem: true });
+    project.createSourceFile(
+      "foo.ts",
+      `
+        class A {
+          x = 1,
+
+          fn() {
+            return this.x;
+          }
+        }
+        `
+    );
+    getConfigMock.mockReturnValue({
+      ignoreCouldBePrivate: true
+    });
+    assertResults(analyze(project), [
+      {
+        class: "A",
+        member: "fn",
+        reason: "unused",
+      },
+    ]);
+  });
+
+
   it("should check references in all files", () => {
     const project = new Project({ useInMemoryFileSystem: true });
     project.createSourceFile(

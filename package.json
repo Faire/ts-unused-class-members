@@ -15,6 +15,7 @@
   ],
   "scripts": {
     "build": "rm -rf dist && tsc",
+    "prepack": "yarn build",
     "test": "jest",
     "test:ci": "jest --ci"
   },

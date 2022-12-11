@@ -220,7 +220,10 @@ export const analyze = (project: t.Project): IOffendingMembers[] => {
 
         // At this point, we knew the member is referenced somewhere, so if
         // it's already private then there's nothing to do here.
-        if (member.getScope() === t.Scope.Private) {
+        if (
+          member.getScope() === t.Scope.Private ||
+          config.ignoreCouldBePrivate
+        ) {
           continue;
         }
 
